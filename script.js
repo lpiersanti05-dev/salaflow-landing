@@ -86,11 +86,5 @@ function handleFormSubmit(form, feedbackEl, message) {
 handleFormSubmit(
     document.getElementById('demoForm'),
     document.getElementById('demoFeedback'),
-    '✓ Richiesta ricevuta! Ti contattiamo a breve per organizzare la demo.'
-);
-
-handleFormSubmit(
-    document.getElementById('newsletterForm'),
-    document.getElementById('newsletterFeedback'),
-    '✓ Iscrizione confermata, a presto!'
+    '✓ Richiesta ricevuta! Ti contattiamo a breve per organizzare la visita.'
 );

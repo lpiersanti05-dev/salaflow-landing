@@ -30,10 +30,10 @@ Nessuna build richiesta: è un sito statico, pronto così com'è.
 Il sito sarà online in meno di un minuto, con un link tipo `nome-progetto.vercel.app`.
 Da Vercel puoi poi collegare un dominio vero (es. `salaflow.app`) da Settings → Domains.
 
-## Collegare i form a un servizio vero
+## Collegare il form a un servizio vero
 
-I due form (richiesta demo e newsletter, in fondo alla pagina) al momento mostrano solo
-un messaggio di conferma, ma **non salvano né inviano davvero i dati da nessuna parte**.
+Il form "Prenota la tua Visita", in fondo alla pagina, al momento mostra solo un
+messaggio di conferma, ma **non salva né invia davvero i dati da nessuna parte**.
 
 Per iniziare a ricevere sul serio le richieste, il modo più veloce senza scrivere un
 backend è usare un servizio come [Formspree](https://formspree.io) (gratuito per iniziare):
@@ -41,7 +41,7 @@ backend è usare un servizio come [Formspree](https://formspree.io) (gratuito pe
 1. Crea un account su Formspree e un nuovo form: ti darà un indirizzo tipo
    `https://formspree.io/f/xxxxxxxx`.
 2. In `index.html`, aggiungi `action="https://formspree.io/f/xxxxxxxx" method="POST"`
-   ai tag `<form id="demoForm">` e `<form id="newsletterForm">`.
+   al tag `<form id="demoForm">`.
 3. In `script.js`, la funzione `handleFormSubmit` va aggiornata per inviare davvero i
    dati (con `fetch`) invece di limitarsi a mostrare il messaggio — c'è già un commento
    nel file che spiega dove intervenire.
