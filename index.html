@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SalaFlow — La sala del tuo ristorante, finalmente sotto controllo</title>
+<meta name="description" content="SalaFlow è la piantina digitale che organizza tavoli e prenotazioni in tempo reale. Meno stress in sala, zero doppie prenotazioni, staff più veloce.">
+
+<meta property="og:title" content="SalaFlow — La sala del tuo ristorante, finalmente sotto controllo">
+<meta property="og:description" content="La piantina digitale che organizza tavoli e prenotazioni in tempo reale, per ristoranti che non hanno tempo da perdere.">
+<meta property="og:type" content="website">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23b45309'/%3E%3Cpath d='M28,66 C28,50 40,42 50,42 C60,42 72,50 72,66' fill='none' stroke='white' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============================================= -->
+<!-- NAV -->
+<!-- ============================================= -->
+<header class="nav" id="nav">
+    <div class="wrap nav-inner">
+        <a href="#top" class="brand">
+            <span class="brand-mark" aria-hidden="true">
+                <svg viewBox="0 0 100 100" fill="none"><path d="M28,66 C28,50 40,42 50,42 C60,42 72,50 72,66" stroke="white" stroke-width="9" stroke-linecap="round"/></svg>
+            </span>
+            SalaFlow
+        </a>
+
+        <nav class="nav-links" aria-label="Navigazione principale">
+            <a href="#funzionalita">Funzionalità</a>
+            <a href="#sotto-il-cofano">Tecnologia</a>
+            <a href="#contatti">Contatti</a>
+        </nav>
+
+        <a href="#demo" class="btn btn-primary btn-sm">Richiedi una Demo</a>
+
+        <button class="nav-toggle" id="navToggle" aria-label="Apri il menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+    <div class="nav-mobile" id="navMobile">
+        <a href="#funzionalita">Funzionalità</a>
+        <a href="#sotto-il-cofano">Tecnologia</a>
+        <a href="#contatti">Contatti</a>
+        <a href="#demo" class="btn btn-primary">Richiedi una Demo</a>
+    </div>
+</header>
+
+<main id="top">
+
+<!-- ============================================= -->
+<!-- HERO -->
+<!-- ============================================= -->
+<section class="hero">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="wrap hero-inner">
+        <div class="hero-copy reveal">
+            <p class="eyebrow">Per ristoranti che non hanno tempo da perdere</p>
+            <h1>La sala, <em>finalmente</em><br>sotto controllo.</h1>
+            <p class="lead">
+                SalaFlow è la piantina digitale che organizza tavoli e prenotazioni in tempo reale —
+                addio al quaderno pieno di cancellature e ai nomi scritti di corsa e illeggibili.
+                Solo tocchi, zero fraintendimenti, molto meno tempo perso.
+            </p>
+            <div class="hero-cta">
+                <a href="#demo" class="btn btn-primary btn-lg">Richiedi una Demo Gratuita</a>
+                <a href="#funzionalita" class="btn btn-ghost btn-lg">Scopri come funziona ↓</a>
+            </div>
+            <p class="hero-note">Nessuna carta di credito richiesta · Attivazione in giornata</p>
+        </div>
+
+        <div class="hero-visual reveal" aria-hidden="true">
+            <div class="mock-card mock-card-main">
+                <div class="mock-card-head">
+                    <span class="dot dot-green dot-live"></span> Serata attiva
+                    <span class="mock-tag">Oggi, 20:30</span>
+                </div>
+                <div class="mock-grid">
+                    <div class="mock-table free">T3</div>
+                    <div class="mock-table occ">T5</div>
+                    <div class="mock-table res">T7</div>
+                    <div class="mock-table free">T8</div>
+                    <div class="mock-table occ">T11</div>
+                    <div class="mock-table free">T12</div>
+                    <div class="mock-table res">T14</div>
+                    <div class="mock-table free">T16</div>
+                </div>
+                <div class="mock-legend">
+                    <span><i class="dot dot-green"></i> Libero</span>
+                    <span><i class="dot dot-amber"></i> Prenotato</span>
+                    <span><i class="dot dot-blue"></i> Arrivato</span>
+                </div>
+            </div>
+            <div class="mock-card mock-card-float">
+                <span class="mock-check">✓</span>
+                <div>
+                    <strong>Tavolo 7 confermato</strong>
+                    <small>Sincronizzato su 3 dispositivi</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================= -->
+<!-- LOGOS / TRUST STRIP -->
+<!-- ============================================= -->
+<section class="trust-strip">
+    <div class="wrap compare-row">
+        <div class="compare-item compare-before reveal">
+            <span class="compare-label">Con il quaderno</span>
+            <p>Nomi illeggibili, correzioni, tavoli segnati due volte per errore</p>
+        </div>
+        <div class="compare-arrow reveal" aria-hidden="true">→</div>
+        <div class="compare-item compare-after reveal">
+            <span class="compare-label">Con SalaFlow</span>
+            <p>Tutto scritto bene, sempre chiaro, aggiornato in tempo reale su ogni schermo</p>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================= -->
+<!-- FEATURES -->
+<!-- ============================================= -->
+<section class="features" id="funzionalita">
+    <div class="wrap">
+        <div class="section-head reveal">
+            <p class="eyebrow">Punti di forza</p>
+            <h2>Tutto quello che serve in sala.<br>Niente di quello che non serve.</h2>
+        </div>
+
+        <div class="features-grid">
+            <article class="feature-card reveal">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+                </div>
+                <h3>Piantina in tempo reale</h3>
+                <p>Vedi lo stato di ogni tavolo a colpo d'occhio — libero, prenotato, arrivato. Disegni tu stesso la piantina delle tue sale, com'è fatto davvero il tuo locale.</p>
+            </article>
+
+            <article class="feature-card reveal">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h11"/></svg>
+                </div>
+                <h3>Tavolo consigliato in automatico</h3>
+                <p>In base a persone e orario, SalaFlow suggerisce subito il tavolo più adatto — evitando conflitti e preferendo sempre un tavolo libero prima di doverne riusare uno già occupato.</p>
+            </article>
+
+            <article class="feature-card reveal">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg>
+                </div>
+                <h3>Promemoria tavolo intelligente</h3>
+                <p>Un avviso automatico ti ricorda di controllare un tavolo occupato da troppo tempo — e sa riconoscere una tavolata numerosa, che resta seduta più a lungo per natura, senza disturbarti inutilmente.</p>
+            </article>
+
+            <article class="feature-card reveal">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 1-15.3 6.4M3 12a9 9 0 0 1 15.3-6.4"/><path d="M3 5v5h5M21 19v-5h-5"/></svg>
+                </div>
+                <h3>Sincronizzazione istantanea</h3>
+                <p>Tutto lo staff vede sempre gli stessi dati, in tempo reale, da qualsiasi tablet o telefono — con notifiche push per arrivi, comande pronte e nuove richieste.</p>
+            </article>
+
+            <article class="feature-card reveal">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-4 3-6.5 6.5-6.5S15.5 16 15.5 20"/><circle cx="17.5" cy="9.5" r="2.7"/><path d="M15.5 13.2c2.8.5 4.8 2.7 4.8 6.3"/></svg>
+                </div>
+                <h3>Un dispositivo, tutto lo staff</h3>
+                <p>Su un tablet condiviso in sala, ogni cameriere sceglie il proprio profilo (con PIN, se lo vuoi) — sai sempre chi ha fatto cosa, senza dover creare un account per ognuno.</p>
+            </article>
+
+            <article class="feature-card reveal">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V10M12 19V5M20 19v-6"/></svg>
+                </div>
+                <h3>Statistiche sempre a portata</h3>
+                <p>Coperti della serata, tempo medio di occupazione dei tavoli, cronologia di chi ha fatto cosa — tutto tracciato da solo, pronto quando ti serve.</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================= -->
+<!-- SITO PRENOTAZIONI PUBBLICO -->
+<!-- ============================================= -->
+<section class="booking-site">
+    <div class="wrap booking-site-inner">
+        <div class="booking-site-visual reveal" aria-hidden="true">
+            <div class="mock-card mock-card-light">
+                <p class="mock-form-title">Richiedi una prenotazione</p>
+                <div class="mock-field">Mario Rossi</div>
+                <div class="mock-field">4 persone · 20:30</div>
+                <button type="button" class="mock-btn">Invia richiesta</button>
+            </div>
+            <div class="mock-card mock-card-light mock-card-float-light">
+                <span class="mock-check">✓</span>
+                <div>
+                    <strong>Nuova richiesta</strong>
+                    <small>Mario Rossi, 4 persone, ore 20:30</small>
+                </div>
+            </div>
+        </div>
+        <div class="booking-site-copy reveal">
+            <p class="eyebrow">Modulo prenotazioni online</p>
+            <h2>Le prenotazioni arrivano da sole, il telefono non squilla più.</h2>
+            <p class="lead">
+                Ogni locale su SalaFlow ha una propria pagina pubblica per le richieste di
+                prenotazione, da condividere su Instagram, Google o il tuo sito. Il cliente
+                compila un modulo semplice, tu ricevi una notifica istantanea e confermi in
+                un tocco — la prenotazione finisce già pronta nella tua piantina.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================= -->
+<!-- SOTTO IL COFANO -->
+<!-- ============================================= -->
+<section class="engine" id="sotto-il-cofano">
+    <div class="wrap engine-inner">
+        <div class="engine-copy reveal">
+            <p class="eyebrow eyebrow-light">Sotto il cofano</p>
+            <h2>Costruita per non fermarsi mai, nemmeno il sabato sera.</h2>
+            <p class="lead lead-light">
+                SalaFlow gira su un'infrastruttura cloud Firebase — la stessa tecnologia che regge
+                applicazioni usate ogni giorno da milioni di persone. I tuoi dati restano sempre
+                sincronizzati, sempre al sicuro, sempre disponibili, anche quando la sala è piena
+                e non c'è un secondo da perdere.
+            </p>
+            <ul class="engine-list">
+                <li>Dati aggiornati in tempo reale su tutti i dispositivi</li>
+                <li>Nessuna installazione: funziona da browser, come un sito</li>
+                <li>Infrastruttura cloud sicura e sempre online</li>
+            </ul>
+        </div>
+        <div class="engine-visual reveal" aria-hidden="true">
+            <div class="engine-node engine-node-1">☁️</div>
+            <div class="engine-node engine-node-2">📱</div>
+            <div class="engine-node engine-node-3">💻</div>
+            <div class="engine-node engine-node-4">⚡</div>
+            <svg class="engine-lines" viewBox="0 0 300 300" fill="none">
+                <circle cx="150" cy="150" r="90" stroke="currentColor" stroke-width="1" stroke-dasharray="4 6" opacity="0.35"/>
+                <circle cx="150" cy="150" r="55" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+            </svg>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================= -->
+<!-- CTA FINALE -->
+<!-- ============================================= -->
+<section class="cta-final" id="demo">
+    <div class="wrap cta-final-inner reveal">
+        <h2>Pronto a semplificarti la serata?</h2>
+        <p>Prova SalaFlow nel tuo locale, senza impegno. Bastano pochi minuti per iniziare — ti accompagniamo noi.</p>
+        <form class="demo-form" id="demoForm">
+            <input type="text" name="nome" placeholder="Il tuo nome" required aria-label="Il tuo nome">
+            <input type="text" name="locale" placeholder="Nome del locale" required aria-label="Nome del locale">
+            <input type="email" name="email" placeholder="La tua email" required aria-label="La tua email">
+            <button type="submit" class="btn btn-primary btn-lg">Richiedi la tua Demo</button>
+        </form>
+        <p class="form-feedback" id="demoFeedback" hidden></p>
+    </div>
+</section>
+
+</main>
+
+<!-- ============================================= -->
+<!-- FOOTER -->
+<!-- ============================================= -->
+<footer class="footer" id="contatti">
+    <div class="wrap footer-inner">
+        <div class="footer-brand">
+            <a href="#top" class="brand brand-footer">
+                <span class="brand-mark" aria-hidden="true">
+                    <svg viewBox="0 0 100 100" fill="none"><path d="M28,66 C28,50 40,42 50,42 C60,42 72,50 72,66" stroke="white" stroke-width="9" stroke-linecap="round"/></svg>
+                </span>
+                SalaFlow
+            </a>
+            <p>La sala del tuo ristorante, organizzata come si deve.</p>
+        </div>
+
+        <div class="footer-col">
+            <h4>Prodotto</h4>
+            <a href="#funzionalita">Funzionalità</a>
+            <a href="#sotto-il-cofano">Tecnologia</a>
+            <a href="#demo">Richiedi una demo</a>
+        </div>
+
+        <div class="footer-col">
+            <h4>Contatti</h4>
+            <a href="mailto:info@salaflow.app">info@salaflow.app</a>
+            <a href="#demo">Parliamone</a>
+        </div>
+
+        <div class="footer-col footer-newsletter">
+            <h4>Resta aggiornato</h4>
+            <p>Novità e consigli per la gestione della sala, ogni tanto — mai spam.</p>
+            <form class="newsletter-form" id="newsletterForm">
+                <input type="email" name="email" placeholder="La tua email" required aria-label="Email per la newsletter">
+                <button type="submit" aria-label="Iscriviti">→</button>
+            </form>
+            <p class="form-feedback" id="newsletterFeedback" hidden></p>
+        </div>
+    </div>
+    <div class="wrap footer-bottom">
+        <p>© <span id="year"></span> SalaFlow. Tutti i diritti riservati.</p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
