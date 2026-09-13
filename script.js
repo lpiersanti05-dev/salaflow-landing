@@ -35,6 +35,17 @@ navMobile.querySelectorAll('a').forEach(link => {
     });
 });
 
+// Chi naviga da tastiera deve poter chiudere il menu con Esc senza
+// dover tabbare fino in fondo per ritrovare il pulsante: il focus
+// torna sul pulsante che l'ha aperto, non si perde nel vuoto.
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navMobile.classList.contains('open')) {
+        navMobile.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.focus();
+    }
+});
+
 // ---------------------------------------------------------
 // Animazioni "reveal" all'ingresso in viewport — scaglionate:
 // dentro una stessa griglia (es. le card funzionalità), ogni
