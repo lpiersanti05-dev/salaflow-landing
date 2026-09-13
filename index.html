@@ -20,6 +20,8 @@
 </head>
 <body>
 
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
 <!-- ============================================= -->
 <!-- NAV -->
 <!-- ============================================= -->
@@ -125,7 +127,7 @@
                     <h3>Carta e penna</h3>
                     <span class="stat-badge stat-badge-bad">LENTO</span>
                 </div>
-                <p class="compare-stat compare-stat-bad">~2 min<small>a prenotazione</small></p>
+                <p class="compare-stat compare-stat-bad"><span class="count-num" data-count-to="2" data-prefix="~" data-suffix=" min">~0 min</span><small>a prenotazione</small></p>
                 <ul class="compare-list">
                     <li><span class="compare-list-icon bad">✕</span> Scorri il quaderno riga per riga, sperando di trovare il nome giusto</li>
                     <li><span class="compare-list-icon bad">✕</span> Grafia illeggibile: "Bianchi" o "Bianchi"? Tavolo 7 o 1?</li>
@@ -138,11 +140,52 @@
                     <h3>Con SalaFlow</h3>
                     <span class="stat-badge stat-badge-good">ISTANTANEO</span>
                 </div>
-                <p class="compare-stat compare-stat-good">5 sec<small>a prenotazione</small></p>
+                <p class="compare-stat compare-stat-good"><span class="count-num" data-count-to="5" data-suffix=" sec">0 sec</span><small>a prenotazione</small></p>
                 <ul class="compare-list">
                     <li><span class="compare-list-icon good">✓</span> Digiti due lettere: la prenotazione compare all'istante</li>
                     <li><span class="compare-list-icon good">✓</span> Nomi, coperti e orari sempre leggibili, mai fraintesi</li>
                     <li><span class="compare-list-icon good">✓</span> Tutta la sala vede lo stesso dato, nello stesso istante</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================= -->
+<!-- CONFRONTO ECONOMICO -->
+<!-- ============================================= -->
+<section class="trust-strip">
+    <div class="wrap">
+        <div class="section-head section-head-center reveal">
+            <p class="pill-badge"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10" cy="10" r="7.5"/><path d="M12.5 7a4 4 0 100 6M6.5 8.5h4M6.5 11h3.5"/></svg> Il conto economico</p>
+            <h2>Un errore sul quaderno può costarti un tavolo intero.</h2>
+            <p class="lead">Una prenotazione persa o raddoppiata per un errore di lettura non è solo un fastidio: è un coperto che quella sera non incassi, e non si recupera.</p>
+        </div>
+
+        <div class="compare-row">
+            <div class="compare-card compare-before reveal">
+                <div class="compare-card-head">
+                    <h3>Un errore sul quaderno</h3>
+                    <span class="stat-badge stat-badge-bad">RISCHIO REALE</span>
+                </div>
+                <p class="compare-stat compare-stat-bad"><span class="count-num" data-count-to="120" data-prefix="-" data-suffix="€">-0€</span><small>un tavolo perso, in media</small></p>
+                <ul class="compare-list">
+                    <li><span class="compare-list-icon bad">✕</span> Un tavolo da 4 prenotato due volte: uno dei due se ne va</li>
+                    <li><span class="compare-list-icon bad">✕</span> Un nome illeggibile, la prenotazione "sparisce" dal quaderno</li>
+                    <li><span class="compare-list-icon bad">✕</span> Un tavolo vuoto in una serata piena è un incasso che non torna</li>
+                </ul>
+            </div>
+
+            <div class="compare-card compare-after reveal">
+                <div class="compare-card-head">
+                    <h3>Con SalaFlow</h3>
+                    <span class="stat-badge stat-badge-good">ZERO RISCHIO</span>
+                </div>
+                <p class="compare-stat compare-stat-good">0€<small>perso per un errore</small></p>
+                <ul class="compare-list">
+                    <li><span class="compare-list-icon good">✓</span> Un tavolo, una prenotazione: il sistema avvisa prima di doppiarla per sbaglio</li>
+                    <li><span class="compare-list-icon good">✓</span> Nome, orario e coperti sempre chiari, mai persi</li>
+                    <li><span class="compare-list-icon good">✓</span> Ogni tavolo pieno resta pieno, per tutta la serata</li>
                 </ul>
             </div>
         </div>
@@ -270,7 +313,7 @@
             <div class="engine-node engine-node-3">💻</div>
             <div class="engine-node engine-node-4">⚡</div>
             <svg class="engine-lines" viewBox="0 0 300 300" fill="none">
-                <circle cx="150" cy="150" r="90" stroke="currentColor" stroke-width="1" stroke-dasharray="4 6" opacity="0.35"/>
+                <circle class="engine-ring-outer" cx="150" cy="150" r="90" stroke="currentColor" stroke-width="1" stroke-dasharray="4 6" opacity="0.35"/>
                 <circle cx="150" cy="150" r="55" stroke="currentColor" stroke-width="1" opacity="0.25"/>
             </svg>
         </div>

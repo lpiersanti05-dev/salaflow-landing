@@ -46,6 +46,65 @@ const revealObserver = new IntersectionObserver((entries) => {
 revealEls.forEach(el => revealObserver.observe(el));
 
 // ---------------------------------------------------------
+// Barra di progresso scroll in cima alla pagina.
+// ---------------------------------------------------------
+const scrollProgressEl = document.getElementById('scrollProgress');
+if (scrollProgressEl) {
+    let scrollTicking = false;
+    const updateScrollProgress = () => {
+        const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+        scrollProgressEl.style.width = `${Math.min(100, Math.max(0, pct))}%`;
+        scrollTicking = false;
+    };
+    window.addEventListener('scroll', () => {
+        if (!scrollTicking) {
+            requestAnimationFrame(updateScrollProgress);
+            scrollTicking = true;
+        }
+    });
+    updateScrollProgress();
+}
+
+// ---------------------------------------------------------
+// Numeri che "contano" da 0 al valore reale quando entrano in
+// vista, nella sezione di confronto carta/SalaFlow.
+// ---------------------------------------------------------
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const countEls = document.querySelectorAll('.count-num');
+if (countEls.length) {
+    const animateCount = (el) => {
+        const target = parseInt(el.dataset.countTo, 10) || 0;
+        const prefix = el.dataset.prefix || '';
+        const suffix = el.dataset.suffix || '';
+        if (prefersReducedMotion) {
+            el.textContent = `${prefix}${target}${suffix}`;
+            return;
+        }
+        const duration = 900;
+        const start = performance.now();
+        const step = (now) => {
+            const progress = Math.min(1, (now - start) / duration);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            el.textContent = `${prefix}${Math.round(target * eased)}${suffix}`;
+            if (progress < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+    };
+
+    const countObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCount(entry.target);
+                countObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.6 });
+
+    countEls.forEach(el => countObserver.observe(el));
+}
+
+// ---------------------------------------------------------
 // Mockup della piantina nell'hero: fa cambiare a rotazione lo
 // stato di un tavolo, per dare l'idea di "sincronizzazione in
 // tempo reale" a colpo d'occhio, senza dover leggere nulla.
