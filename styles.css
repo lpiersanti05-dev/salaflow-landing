@@ -268,34 +268,27 @@ a { color: inherit; text-decoration: none; }
 .section-head-center .pill-badge { display: inline-flex; }
 .section-head h2 { font-size: clamp(1.7rem, 3vw, 2.4rem); }
 
-/* ---------- Trust strip: confronto carta vs SalaFlow ---------- */
+/* ---------- Trust strip: confronto, tutto in una tabella ---------- */
 .trust-strip { padding: 6rem 0; background: var(--bg-alt); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-.compare-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-.compare-card {
-    padding: 1.75rem;
+.compare-table-wrap {
+    overflow-x: auto;
     border-radius: var(--radius-lg);
-    background: var(--surface);
     border: 1px solid var(--border);
+    background: var(--surface);
 }
-.compare-card.compare-after { border-color: var(--accent-border); box-shadow: var(--shadow-card); }
-.compare-card-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; }
-.compare-card-head h3 { font-size: 1.05rem; font-weight: 700; }
-.stat-badge { font-size: 0.68rem; font-weight: 800; letter-spacing: 0.05em; padding: 0.3rem 0.65rem; border-radius: 999px; }
-.stat-badge-bad { color: var(--danger); background: var(--danger-soft); border: 1px solid var(--danger-border); }
-.stat-badge-good { color: var(--accent); background: var(--accent-soft); border: 1px solid var(--accent-border); }
-.compare-stat { font-size: 2.4rem; font-weight: 800; margin-bottom: 1.4rem; display: flex; align-items: baseline; gap: 0.5rem; }
-.compare-stat small { font-size: 0.85rem; font-weight: 600; color: var(--ink-faint); }
-.compare-stat-bad { color: var(--danger); }
-.compare-stat-good { color: var(--accent); }
-.compare-list { display: flex; flex-direction: column; gap: 0.85rem; }
-.compare-list li { display: flex; align-items: flex-start; gap: 0.65rem; font-size: 0.9rem; color: var(--ink-soft); }
-.compare-list-icon {
-    flex-shrink: 0; width: 1.2rem; height: 1.2rem; border-radius: 999px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.7rem; font-weight: 800; margin-top: 0.1rem;
+.compare-table { width: 100%; min-width: 560px; border-collapse: collapse; }
+.compare-table th, .compare-table td { padding: 1.1rem 1.5rem; text-align: left; font-size: 0.92rem; }
+.compare-table thead th {
+    font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--ink-faint); border-bottom: 1px solid var(--border);
 }
-.compare-list-icon.bad { background: var(--danger-soft); color: var(--danger); }
-.compare-list-icon.good { background: var(--accent-soft); color: var(--accent); }
+.compare-table thead th.compare-table-winner { color: var(--accent); background: var(--accent-soft); }
+.compare-table tbody th { font-weight: 600; color: var(--ink); white-space: nowrap; }
+.compare-table tbody tr:not(:last-child) th,
+.compare-table tbody tr:not(:last-child) td { border-bottom: 1px solid var(--border); }
+.compare-table td.bad { color: var(--danger); }
+.compare-table td.good { color: var(--accent); font-weight: 700; background: var(--accent-soft); }
+.compare-table .count-num { font-weight: 800; }
 
 /* ---------- Come funziona (3 passi) ---------- */
 .steps { padding: 6rem 0; }
@@ -450,7 +443,6 @@ a { color: inherit; text-decoration: none; }
     .booking-site-inner { grid-template-columns: 1fr; }
     .booking-site-visual { max-width: 26rem; margin: 0 auto; order: -1; }
     .footer-inner { grid-template-columns: 1fr 1fr; }
-    .compare-row { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 720px) {
