@@ -39,12 +39,41 @@ navMobile.querySelectorAll('a').forEach(link => {
 // dover tabbare fino in fondo per ritrovare il pulsante: il focus
 // torna sul pulsante che l'ha aperto, non si perde nel vuoto.
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && navMobile.classList.contains('open')) {
+    if (e.key !== 'Escape') return;
+    if (navMobile.classList.contains('open')) {
         navMobile.classList.remove('open');
         navToggle.setAttribute('aria-expanded', 'false');
         navToggle.focus();
     }
+    if (!document.getElementById('demoVideoModal').hidden) {
+        closeDemoVideoModal();
+    }
 });
+
+// ---------------------------------------------------------
+// Modale "Guarda la Demo": ancora senza il video vero (vedi
+// commento nell'HTML su dove incollarlo), ma già cliccabile e
+// apribile/chiudibile correttamente, focus incluso.
+// ---------------------------------------------------------
+let demoVideoOpenerEl = null;
+
+function openDemoVideoModal() {
+    demoVideoOpenerEl = document.activeElement;
+    const modal = document.getElementById('demoVideoModal');
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    document.getElementById('demoVideoCloseBtn').focus();
+}
+
+function closeDemoVideoModal() {
+    const modal = document.getElementById('demoVideoModal');
+    modal.hidden = true;
+    document.body.style.overflow = '';
+    if (demoVideoOpenerEl) {
+        demoVideoOpenerEl.focus();
+        demoVideoOpenerEl = null;
+    }
+}
 
 // ---------------------------------------------------------
 // Animazioni "reveal" all'ingresso in viewport — scaglionate:
