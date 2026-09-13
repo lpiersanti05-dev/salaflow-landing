@@ -1,4 +1,18 @@
 // ---------------------------------------------------------
+// Il browser di suo tenta di "ricordare" la posizione di scroll
+// tra un refresh e l'altro: dopo un ricaricamento la pagina si
+// ritrovava a metà invece che in cima. Disattivato, e riportata
+// in cima esplicitamente — a meno che l'URL non punti già a una
+// sezione precisa (es. arrivando da un link a "#confronto").
+// ---------------------------------------------------------
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+if (!location.hash) {
+    window.scrollTo(0, 0);
+}
+
+// ---------------------------------------------------------
 // Anno corrente nel footer
 // ---------------------------------------------------------
 document.getElementById('year').textContent = new Date().getFullYear();
