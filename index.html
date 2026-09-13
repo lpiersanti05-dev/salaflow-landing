@@ -96,7 +96,7 @@
             </p>
             <div class="hero-cta">
                 <a href="#demo" class="btn btn-primary btn-lg">Prenota una Visita</a>
-                <button type="button" class="btn btn-ghost btn-lg" onclick="openDemoVideoModal()"><svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path d="M6 4l11 6-11 6V4z"/></svg> Guarda la Demo</button>
+                <a href="#video-demo" class="btn btn-ghost btn-lg"><svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path d="M6 4l11 6-11 6V4z"/></svg> Guarda la Demo</a>
             </div>
             <p class="hero-note">Nessun impegno · Ti rispondiamo entro un giorno lavorativo</p>
         </div>
@@ -159,6 +159,39 @@
                 <span class="step-number">03</span>
                 <h3>Gestisci tutto da un tablet</h3>
                 <p>Stato dei tavoli, arrivi, comande: tutto lo staff vede la stessa cosa, nello stesso istante.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================= -->
+<!-- DEMO VIDEO (inline, parte da sola in muto quando -->
+<!-- entra in vista scorrendo — niente pulsante play) -->
+<!-- ============================================= -->
+<section class="demo-video" id="video-demo">
+    <div class="wrap">
+        <div class="section-head section-head-center reveal">
+            <p class="pill-badge"><svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path d="M6 4l11 6-11 6V4z"/></svg> Guarda SalaFlow in azione</p>
+            <h2>Non solo a parole. Ecco com'è lavorare così.</h2>
+        </div>
+
+        <!--
+            Slot pronto per il video vero: quando c'è, sostituisci il
+            <div class="demo-video-placeholder">...</div> qui sotto con:
+
+            <video muted loop playsinline preload="metadata" poster="demo-poster.jpg">
+                <source src="demo.mp4" type="video/mp4">
+            </video>
+
+            Non serve aggiungere altro codice: l'observer già presente in
+            script.js lo fa partire da solo (in muto, in loop) appena entra
+            nello schermo scorrendo, e lo mette in pausa quando esce —
+            nessun tasto play da premere.
+        -->
+        <div class="demo-video-frame reveal" id="demoVideoFrame">
+            <div class="demo-video-placeholder">
+                <svg viewBox="0 0 20 20" fill="currentColor" width="30" height="30"><path d="M6 4l11 6-11 6V4z"/></svg>
+                <p>Il video arriva a breve</p>
             </div>
         </div>
     </div>
@@ -434,31 +467,6 @@
 </footer>
 
 <a href="#demo" class="sticky-cta" id="stickyCta">Prenota una Visita</a>
-
-<!-- ============================================= -->
-<!-- MODALE VIDEO DEMO -->
-<!-- Ancora senza il video vero: quando è pronto, sostituisci il
-     contenuto di #demoVideoFrame (dentro il placeholder) con
-     l'embed reale, per esempio:
-     <iframe src="https://www.youtube.com/embed/ID_VIDEO" title="Demo SalaFlow" allow="autoplay; fullscreen" allowfullscreen></iframe>
-     oppure <video controls src="demo.mp4"></video> -->
-<!-- ============================================= -->
-<div id="demoVideoModal" class="video-modal" hidden>
-    <div class="video-modal-backdrop" onclick="closeDemoVideoModal()"></div>
-    <div class="video-modal-panel" role="dialog" aria-modal="true" aria-label="Demo SalaFlow">
-        <button type="button" class="video-modal-close" id="demoVideoCloseBtn" onclick="closeDemoVideoModal()" aria-label="Chiudi">
-            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="5" x2="15" y2="15"/><line x1="15" y1="5" x2="5" y2="15"/></svg>
-        </button>
-        <div class="video-modal-frame" id="demoVideoFrame">
-            <div class="video-modal-placeholder">
-                <svg viewBox="0 0 20 20" fill="currentColor" width="32" height="32"><path d="M6 4l11 6-11 6V4z"/></svg>
-                <p>Il video è in arrivo.</p>
-                <p class="video-modal-placeholder-sub">Nel frattempo, prenota una visita: te lo mostriamo dal vivo, sui tuoi tavoli veri.</p>
-                <a href="#demo" class="btn btn-primary" onclick="closeDemoVideoModal()">Prenota una Visita</a>
-            </div>
-        </div>
-    </div>
-</div>
 
 <script src="script.js"></script>
 </body>

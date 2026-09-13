@@ -39,40 +39,34 @@ navMobile.querySelectorAll('a').forEach(link => {
 // dover tabbare fino in fondo per ritrovare il pulsante: il focus
 // torna sul pulsante che l'ha aperto, non si perde nel vuoto.
 document.addEventListener('keydown', (e) => {
-    if (e.key !== 'Escape') return;
-    if (navMobile.classList.contains('open')) {
+    if (e.key === 'Escape' && navMobile.classList.contains('open')) {
         navMobile.classList.remove('open');
         navToggle.setAttribute('aria-expanded', 'false');
         navToggle.focus();
     }
-    if (!document.getElementById('demoVideoModal').hidden) {
-        closeDemoVideoModal();
-    }
 });
 
 // ---------------------------------------------------------
-// Modale "Guarda la Demo": ancora senza il video vero (vedi
-// commento nell'HTML su dove incollarlo), ma già cliccabile e
-// apribile/chiudibile correttamente, focus incluso.
+// Demo video inline: parte da sola (in muto) quando entra nello
+// schermo scorrendo, si ferma quando esce — nessun tasto play.
+// Finché non c'è ancora un <video> vero dentro #demoVideoFrame
+// (vedi commento nell'HTML), questo non fa nulla: appena verrà
+// aggiunto, funzionerà senza bisogno di toccare altro codice.
 // ---------------------------------------------------------
-let demoVideoOpenerEl = null;
-
-function openDemoVideoModal() {
-    demoVideoOpenerEl = document.activeElement;
-    const modal = document.getElementById('demoVideoModal');
-    modal.hidden = false;
-    document.body.style.overflow = 'hidden';
-    document.getElementById('demoVideoCloseBtn').focus();
-}
-
-function closeDemoVideoModal() {
-    const modal = document.getElementById('demoVideoModal');
-    modal.hidden = true;
-    document.body.style.overflow = '';
-    if (demoVideoOpenerEl) {
-        demoVideoOpenerEl.focus();
-        demoVideoOpenerEl = null;
-    }
+const demoVideoFrame = document.getElementById('demoVideoFrame');
+if (demoVideoFrame) {
+    const demoVideoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const video = demoVideoFrame.querySelector('video');
+            if (!video) return;
+            if (entry.isIntersecting) {
+                video.play().catch(() => {});
+            } else {
+                video.pause();
+            }
+        });
+    }, { threshold: 0.5 });
+    demoVideoObserver.observe(demoVideoFrame);
 }
 
 // ---------------------------------------------------------
