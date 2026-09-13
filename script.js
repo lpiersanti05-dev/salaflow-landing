@@ -60,24 +60,34 @@ const revealObserver = new IntersectionObserver((entries) => {
 revealEls.forEach(el => revealObserver.observe(el));
 
 // ---------------------------------------------------------
-// Barra di progresso scroll in cima alla pagina.
+// Barra di progresso scroll in cima alla pagina, e comparsa
+// della CTA fissa in basso (solo mobile) una volta superato
+// l'hero — un solo scroll listener per entrambe le cose.
 // ---------------------------------------------------------
 const scrollProgressEl = document.getElementById('scrollProgress');
-if (scrollProgressEl) {
+const stickyCtaEl = document.getElementById('stickyCta');
+const heroEl = document.querySelector('.hero');
+if (scrollProgressEl || stickyCtaEl) {
     let scrollTicking = false;
-    const updateScrollProgress = () => {
-        const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-        const pct = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
-        scrollProgressEl.style.width = `${Math.min(100, Math.max(0, pct))}%`;
+    const updateOnScroll = () => {
+        if (scrollProgressEl) {
+            const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+            scrollProgressEl.style.width = `${Math.min(100, Math.max(0, pct))}%`;
+        }
+        if (stickyCtaEl && heroEl) {
+            const pastHero = window.scrollY > heroEl.offsetHeight;
+            stickyCtaEl.classList.toggle('visible', pastHero);
+        }
         scrollTicking = false;
     };
     window.addEventListener('scroll', () => {
         if (!scrollTicking) {
-            requestAnimationFrame(updateScrollProgress);
+            requestAnimationFrame(updateOnScroll);
             scrollTicking = true;
         }
     });
-    updateScrollProgress();
+    updateOnScroll();
 }
 
 // ---------------------------------------------------------
