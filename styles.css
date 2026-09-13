@@ -351,14 +351,15 @@ a { color: inherit; text-decoration: none; }
 .engine-lines { position: absolute; inset: 0; color: var(--accent); }
 .engine-node {
     position: absolute; width: 3.4rem; height: 3.4rem; border-radius: 1rem;
-    background: var(--surface); border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center; font-size: 1.4rem;
+    background: var(--surface); border: 1px solid var(--border); color: var(--accent);
+    display: flex; align-items: center; justify-content: center;
     animation: float 6s ease-in-out infinite;
 }
+.engine-node svg { width: 1.6rem; height: 1.6rem; }
 .engine-node-1 { top: 6%; left: 8%; animation-delay: 0s; }
 .engine-node-2 { top: 10%; right: 6%; animation-delay: 1.2s; }
 .engine-node-3 { bottom: 8%; left: 12%; animation-delay: 2.1s; }
-.engine-node-4 { bottom: 12%; right: 10%; animation-delay: 0.6s; background: var(--accent); border-color: transparent; }
+.engine-node-4 { bottom: 12%; right: 10%; animation-delay: 0.6s; background: var(--accent); border-color: transparent; color: #06231a; }
 
 /* ---------- CTA finale ---------- */
 .cta-final { padding: 6rem 0; }
