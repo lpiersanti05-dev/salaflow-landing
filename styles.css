@@ -33,6 +33,36 @@
     --shadow-accent: 0 10px 26px -10px rgba(45, 216, 163, 0.45);
 
     color-scheme: dark;
+
+    /* ---------- Motion tokens (transitions.dev) ---------- */
+    --ease-smooth-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --icon-swap-dur: 250ms;
+    --icon-swap-ease: ease-in-out;
+    --acc-expand: 250ms;
+    --acc-collapse: 250ms;
+    --acc-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --blur-small: 2px;
+    --tilt-perspective: 1000px;
+    --tilt-return: 1000ms;
+    --tilt-return-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --tilt-follow: 400ms;
+    --tilt-follow-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --tilt-glare-opacity: 0.32;
+    --tilt-glare-fade: 300ms;
+    --check-opacity-dur: 500ms;
+    --check-rotate-dur: 500ms;
+    --check-rotate-from: 80deg;
+    --check-bob-dur: 500ms;
+    --check-y-amount: 40px;
+    --check-blur-dur: 500ms;
+    --check-blur-from: 10px;
+    --check-path-dur: 500ms;
+    --check-path-delay: 80ms;
+    --check-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --check-ease-bob: cubic-bezier(0.34, 1.35, 0.64, 1);
+    --toast-open: 350ms;
+    --toast-close: 250ms;
+    --toast-ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 * { box-sizing: border-box; }
@@ -177,11 +207,45 @@ a { color: inherit; text-decoration: none; }
 }
 .nav-links a:hover::after { right: 0; }
 .nav-toggle { display: none; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-width: 44px; min-height: 44px; background: none; border: none; cursor: pointer; }
-.nav-toggle span { width: 22px; height: 2px; background: var(--ink); border-radius: 2px; }
-.nav-mobile { display: none; flex-direction: column; gap: 0.25rem; padding: 0.5rem 1.5rem 1.25rem; border-top: 1px solid var(--border); }
-.nav-mobile a { padding: 0.7rem 0; font-weight: 600; color: var(--ink-soft); }
-.nav-mobile .btn { margin-top: 0.5rem; }
-.nav-mobile.open { display: flex; }
+.nav-toggle span {
+    width: 22px; height: 2px; background: var(--ink); border-radius: 2px;
+    transition: transform var(--icon-swap-dur) var(--icon-swap-ease), opacity var(--icon-swap-dur) var(--icon-swap-ease);
+}
+/* Il pulsante espone già aria-expanded via script.js: lo stesso
+   attributo che serve per l'accessibilità pilota anche il morph
+   dell'icona, senza bisogno di una classe JS in più. */
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+@media (prefers-reduced-motion: reduce) { .nav-toggle span { transition: none; } }
+
+/* Altezza animata via grid-template-rows 0fr -> 1fr: nessuna
+   misura JS, e il contenuto di qualsiasi altezza si apre pulito. */
+.nav-mobile {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows var(--acc-collapse) var(--acc-ease);
+}
+.nav-mobile.open {
+    grid-template-rows: 1fr;
+    transition: grid-template-rows var(--acc-expand) var(--acc-ease);
+}
+.nav-mobile-inner {
+    overflow: hidden;
+    display: flex; flex-direction: column; gap: 0.25rem;
+    padding: 0.5rem 1.5rem 1.25rem; border-top: 1px solid var(--border);
+    opacity: 0; filter: blur(var(--blur-small));
+    transition: opacity var(--acc-collapse) var(--acc-ease), filter var(--acc-collapse) var(--acc-ease);
+}
+.nav-mobile.open .nav-mobile-inner {
+    opacity: 1; filter: blur(0);
+    transition: opacity var(--acc-expand) var(--acc-ease), filter var(--acc-expand) var(--acc-ease);
+}
+.nav-mobile-inner a { padding: 0.7rem 0; font-weight: 600; color: var(--ink-soft); }
+.nav-mobile-inner .btn { margin-top: 0.5rem; }
+@media (prefers-reduced-motion: reduce) {
+    .nav-mobile, .nav-mobile-inner { transition: none; }
+}
 
 /* ---------- Hero ---------- */
 .hero { position: relative; padding: 5.5rem 0 5rem; overflow: hidden; }
@@ -308,14 +372,31 @@ a { color: inherit; text-decoration: none; }
 /* ---------- Features ---------- */
 .features { padding: 6rem 0; }
 .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-.feature-card {
+/* .feature-card è l'area di rilevamento del puntatore (piatta,
+   non ruota mai — vedi card hover tilt di transitions-dev):
+   l'aspetto visivo e il tilt 3D vivono tutti su .feature-card-inner. */
+.feature-card:hover .feature-card-inner { box-shadow: var(--shadow-card); border-color: var(--accent-border); }
+.feature-card-inner {
+    position: relative;
     padding: 2rem;
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+    overflow: hidden;
+    transform: perspective(var(--tilt-perspective)) rotateX(var(--tilt-rx, 0deg)) rotateY(var(--tilt-ry, 0deg));
+    transition: box-shadow 0.3s ease, border-color 0.3s ease, transform var(--tilt-return) var(--tilt-return-ease);
+    will-change: transform;
 }
-.feature-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); border-color: var(--accent-border); }
+.feature-card-inner.is-tilting { transition: box-shadow 0.3s ease, border-color 0.3s ease, transform var(--tilt-follow) var(--tilt-follow-ease); }
+.feature-card-glare {
+    position: absolute; inset: 0; pointer-events: none; opacity: 0;
+    mix-blend-mode: screen;
+    background:
+        radial-gradient(circle 95px at var(--tilt-gx, 50%) var(--tilt-gy, 50%), rgba(255,255,255,0.32), rgba(255,255,255,0.04) 52%, rgba(255,255,255,0) 84%),
+        radial-gradient(circle 200px at var(--tilt-gx, 50%) var(--tilt-gy, 50%), rgba(255,255,255,0.14), rgba(255,255,255,0) 78%);
+    transition: opacity var(--tilt-glare-fade) var(--ease-smooth-out);
+}
+.feature-card:hover .feature-card-glare { opacity: var(--tilt-glare-opacity); }
 .feature-icon {
     width: 3rem; height: 3rem; border-radius: 0.9rem;
     background: var(--accent-soft); border: 1px solid var(--accent-border);
@@ -328,6 +409,9 @@ a { color: inherit; text-decoration: none; }
 .feature-icon svg { width: 1.5rem; height: 1.5rem; }
 .feature-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.6rem; }
 .feature-card p { color: var(--ink-soft); font-size: 0.95rem; }
+@media (prefers-reduced-motion: reduce) {
+    .feature-card-inner { transform: none !important; transition: box-shadow 0.3s ease, border-color 0.3s ease; }
+}
 
 /* ---------- Sito prenotazioni pubblico ---------- */
 .booking-site { padding: 6rem 0; background: var(--bg-alt); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
@@ -408,8 +492,49 @@ a { color: inherit; text-decoration: none; }
 .demo-form input:focus { outline: none; border-color: #06231a; box-shadow: 0 0 0 3px rgba(6, 35, 26, 0.25); }
 .demo-form input[name="email"] { grid-column: span 2; }
 .demo-form .btn { grid-column: span 2; margin-top: 0.4rem; }
-.form-feedback { margin-top: 1rem; font-weight: 700; font-size: 0.9rem; }
+.form-feedback { margin-top: 1rem; font-weight: 700; font-size: 0.9rem; display: flex; align-items: flex-start; gap: 0.5rem; text-align: left; }
+.form-feedback .t-success-check { margin-top: 0.15rem; }
 .cta-final-block .form-feedback { color: #06231a; }
+/* Segno di spunta animato (fade + rotate + bob + stroke-draw)
+   quando il form viene inviato con successo. */
+.t-success-check {
+    display: inline-block; flex: none;
+    transform-origin: center; opacity: 0;
+    will-change: transform, opacity, filter;
+}
+.t-success-check svg { display: block; overflow: visible; }
+.t-success-check svg path {
+    stroke-dasharray: 20;
+    stroke-dashoffset: 20;
+}
+.t-success-check[data-state="in"] {
+    animation:
+        t-check-fade   var(--check-opacity-dur) var(--check-ease-out) forwards,
+        t-check-rotate var(--check-rotate-dur)  var(--check-ease-out) forwards,
+        t-check-blur   var(--check-blur-dur)    var(--check-ease-out) forwards,
+        t-check-bob    var(--check-bob-dur)     var(--check-ease-bob) forwards;
+}
+.t-success-check[data-state="in"] svg path {
+    animation: t-check-draw var(--check-path-dur) var(--check-ease-out) var(--check-path-delay) forwards;
+}
+@keyframes t-check-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes t-check-rotate {
+    from { transform: rotate(var(--check-rotate-from)); }
+    to   { transform: rotate(0deg); }
+}
+@keyframes t-check-blur {
+    from { filter: blur(var(--check-blur-from)); }
+    to   { filter: blur(0); }
+}
+@keyframes t-check-bob {
+    from { translate: 0 calc(var(--check-y-amount) * 0.3); }
+    to   { translate: 0 0; }
+}
+@keyframes t-check-draw { to { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: reduce) {
+    .t-success-check { animation: none !important; opacity: 1; }
+    .t-success-check svg path { animation: none !important; stroke-dashoffset: 0 !important; }
+}
 .data-trust-note {
     margin-top: 1.1rem; display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
     font-size: 0.78rem; font-weight: 600; color: #06231a; text-align: center;
@@ -479,9 +604,9 @@ a { color: inherit; text-decoration: none; }
     text-align: center; font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.03em;
     box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.35);
     transform: translateY(100%);
-    transition: transform 0.3s ease;
+    transition: transform var(--toast-close) var(--toast-ease);
 }
-.sticky-cta.visible { transform: translateY(0); }
+.sticky-cta.visible { transform: translateY(0); transition: transform var(--toast-open) var(--toast-ease); }
 @media (max-width: 720px) {
     .sticky-cta { display: block; }
 }

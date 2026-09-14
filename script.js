@@ -163,6 +163,36 @@ if (countEls.length) {
 }
 
 // ---------------------------------------------------------
+// Tilt 3D sulle card funzionalità al passaggio del mouse, con
+// un riflesso che segue il puntatore — solo su mouse: su touch
+// il gesto serve a scorrere la pagina, non a inclinare la card.
+// ---------------------------------------------------------
+if (!prefersReducedMotion) {
+    const TILT_MAX_DEG = 10;
+    document.querySelectorAll('.feature-card').forEach(card => {
+        const inner = card.querySelector('.feature-card-inner');
+        if (!inner) return;
+
+        card.addEventListener('pointermove', (e) => {
+            if (e.pointerType !== 'mouse') return;
+            const r = card.getBoundingClientRect();
+            const px = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width));
+            const py = Math.min(1, Math.max(0, (e.clientY - r.top) / r.height));
+            inner.classList.add('is-tilting');
+            inner.style.setProperty('--tilt-ry', ((px - 0.5) * TILT_MAX_DEG).toFixed(2) + 'deg');
+            inner.style.setProperty('--tilt-rx', ((0.5 - py) * TILT_MAX_DEG).toFixed(2) + 'deg');
+            inner.style.setProperty('--tilt-gx', (px * 100).toFixed(1) + '%');
+            inner.style.setProperty('--tilt-gy', (py * 100).toFixed(1) + '%');
+        });
+        card.addEventListener('pointerleave', () => {
+            inner.classList.remove('is-tilting');
+            inner.style.setProperty('--tilt-rx', '0deg');
+            inner.style.setProperty('--tilt-ry', '0deg');
+        });
+    });
+}
+
+// ---------------------------------------------------------
 // Mockup della piantina nell'hero: fa cambiare a rotazione lo
 // stato di un tavolo, per dare l'idea di "sincronizzazione in
 // tempo reale" a colpo d'occhio, senza dover leggere nulla.
@@ -192,10 +222,17 @@ if (mockTables.length) {
 // (es. fetch('https://formspree.io/f/xxxxx', { method: 'POST', body: new FormData(form) })).
 // ---------------------------------------------------------
 function handleFormSubmit(form, feedbackEl, message) {
+    const checkEl = feedbackEl.querySelector('.t-success-check');
+    const textEl = feedbackEl.querySelector('#demoFeedbackText');
     form.addEventListener('submit', (e) => {
         e.preventDefault();
-        feedbackEl.textContent = message;
+        textEl.textContent = message;
         feedbackEl.hidden = false;
+        if (checkEl) {
+            checkEl.setAttribute('data-state', 'out');
+            void checkEl.offsetWidth;
+            checkEl.setAttribute('data-state', 'in');
+        }
         form.reset();
     });
 }
@@ -203,5 +240,5 @@ function handleFormSubmit(form, feedbackEl, message) {
 handleFormSubmit(
     document.getElementById('demoForm'),
     document.getElementById('demoFeedback'),
-    '✓ Richiesta ricevuta! Ti contattiamo a breve per organizzare la visita.'
+    'Richiesta ricevuta! Ti contattiamo a breve per organizzare la visita.'
 );

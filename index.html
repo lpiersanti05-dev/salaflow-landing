@@ -71,10 +71,12 @@
         </button>
     </div>
     <div class="nav-mobile" id="navMobile">
-        <a href="#funzionalita">Funzionalità</a>
-        <a href="#confronto">Confronto</a>
-        <a href="#contatti">Contatti</a>
-        <a href="#demo" class="btn btn-primary">Prenota una Visita</a>
+        <div class="nav-mobile-inner">
+            <a href="#funzionalita">Funzionalità</a>
+            <a href="#confronto">Confronto</a>
+            <a href="#contatti">Contatti</a>
+            <a href="#demo" class="btn btn-primary">Prenota una Visita</a>
+        </div>
     </div>
 </header>
 
@@ -266,51 +268,69 @@
 
         <div class="features-grid">
             <article class="feature-card reveal">
-                <div class="feature-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+                <div class="feature-card-inner">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+                    </div>
+                    <h3>Piantina in tempo reale</h3>
+                    <p>Un colpo d'occhio e sai già tutto: libero, prenotato, arrivato. La piantina la disegni tu, identica alla tua sala vera.</p>
+                    <div class="feature-card-glare" aria-hidden="true"></div>
                 </div>
-                <h3>Piantina in tempo reale</h3>
-                <p>Un colpo d'occhio e sai già tutto: libero, prenotato, arrivato. La piantina la disegni tu, identica alla tua sala vera.</p>
             </article>
 
             <article class="feature-card reveal">
-                <div class="feature-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h11"/></svg>
+                <div class="feature-card-inner">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h11"/></svg>
+                    </div>
+                    <h3>Tavolo consigliato in automatico</h3>
+                    <p>In base a persone e orario, SalaFlow ti suggerisce subito il tavolo giusto — sempre un tavolo libero, prima di proporti un doppio turno.</p>
+                    <div class="feature-card-glare" aria-hidden="true"></div>
                 </div>
-                <h3>Tavolo consigliato in automatico</h3>
-                <p>In base a persone e orario, SalaFlow ti suggerisce subito il tavolo giusto — sempre un tavolo libero, prima di proporti un doppio turno.</p>
             </article>
 
             <article class="feature-card reveal">
-                <div class="feature-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg>
+                <div class="feature-card-inner">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg>
+                    </div>
+                    <h3>Promemoria tavolo intelligente</h3>
+                    <p>Un avviso ti ricorda di controllare i tavoli occupati da troppo tempo — e riconosce le tavolate numerose, che restano sedute più a lungo per natura, senza disturbarti a vuoto.</p>
+                    <div class="feature-card-glare" aria-hidden="true"></div>
                 </div>
-                <h3>Promemoria tavolo intelligente</h3>
-                <p>Un avviso ti ricorda di controllare i tavoli occupati da troppo tempo — e riconosce le tavolate numerose, che restano sedute più a lungo per natura, senza disturbarti a vuoto.</p>
             </article>
 
             <article class="feature-card reveal">
-                <div class="feature-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 1-15.3 6.4M3 12a9 9 0 0 1 15.3-6.4"/><path d="M3 5v5h5M21 19v-5h-5"/></svg>
+                <div class="feature-card-inner">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 1-15.3 6.4M3 12a9 9 0 0 1 15.3-6.4"/><path d="M3 5v5h5M21 19v-5h-5"/></svg>
+                    </div>
+                    <h3>Sincronizzazione istantanea</h3>
+                    <p>Tutto lo staff vede gli stessi dati, in tempo reale, da qualsiasi tablet o telefono — con notifiche push per arrivi e nuove richieste, nel momento in cui succedono.</p>
+                    <div class="feature-card-glare" aria-hidden="true"></div>
                 </div>
-                <h3>Sincronizzazione istantanea</h3>
-                <p>Tutto lo staff vede gli stessi dati, in tempo reale, da qualsiasi tablet o telefono — con notifiche push per arrivi e nuove richieste, nel momento in cui succedono.</p>
             </article>
 
             <article class="feature-card reveal">
-                <div class="feature-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-4 3-6.5 6.5-6.5S15.5 16 15.5 20"/><circle cx="17.5" cy="9.5" r="2.7"/><path d="M15.5 13.2c2.8.5 4.8 2.7 4.8 6.3"/></svg>
+                <div class="feature-card-inner">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-4 3-6.5 6.5-6.5S15.5 16 15.5 20"/><circle cx="17.5" cy="9.5" r="2.7"/><path d="M15.5 13.2c2.8.5 4.8 2.7 4.8 6.3"/></svg>
+                    </div>
+                    <h3>Un dispositivo, tutto lo staff</h3>
+                    <p>Su un unico tablet condiviso, ogni cameriere sceglie il proprio profilo, con PIN se lo vuoi — sai sempre chi ha fatto cosa, senza un account da creare per ciascuno.</p>
+                    <div class="feature-card-glare" aria-hidden="true"></div>
                 </div>
-                <h3>Un dispositivo, tutto lo staff</h3>
-                <p>Su un unico tablet condiviso, ogni cameriere sceglie il proprio profilo, con PIN se lo vuoi — sai sempre chi ha fatto cosa, senza un account da creare per ciascuno.</p>
             </article>
 
             <article class="feature-card reveal">
-                <div class="feature-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V10M12 19V5M20 19v-6"/></svg>
+                <div class="feature-card-inner">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V10M12 19V5M20 19v-6"/></svg>
+                    </div>
+                    <h3>Statistiche sempre a portata</h3>
+                    <p>Coperti della serata, tempo medio ai tavoli, chi ha fatto cosa: tutto tracciato da solo, pronto ogni volta che ti serve.</p>
+                    <div class="feature-card-glare" aria-hidden="true"></div>
                 </div>
-                <h3>Statistiche sempre a portata</h3>
-                <p>Coperti della serata, tempo medio ai tavoli, chi ha fatto cosa: tutto tracciato da solo, pronto ogni volta che ti serve.</p>
             </article>
         </div>
     </div>
@@ -424,7 +444,12 @@
                 <input type="email" name="email" placeholder="La tua email" required aria-label="La tua email">
                 <button type="submit" class="btn btn-dark btn-lg">Prenota la tua Visita</button>
             </form>
-            <p class="form-feedback" id="demoFeedback" hidden></p>
+            <p class="form-feedback" id="demoFeedback" hidden>
+                <span class="t-success-check" data-state="out" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" width="20" height="20"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <span id="demoFeedbackText"></span>
+            </p>
             <p class="data-trust-note"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2l6.5 2.8v4.7c0 4.3-2.8 8-6.5 9.5-3.7-1.5-6.5-5.2-6.5-9.5V4.8L10 2z"/></svg> I tuoi dati restano su infrastruttura Google Cloud e non vengono mai condivisi con terzi.</p>
         </div>
     </div>
