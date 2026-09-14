@@ -212,28 +212,62 @@ if (mockTables.length) {
 }
 
 // ---------------------------------------------------------
-// Form richiesta demo e newsletter.
-//
-// Questi form NON hanno ancora un backend collegato: al submit
-// mostrano solo una conferma visiva. Per raccogliere davvero le
-// richieste, collega un servizio come Formspree, Google Forms o
-// un webhook personalizzato, e sostituisci la funzione
-// handleFormSubmit qui sotto con una vera chiamata di rete
-// (es. fetch('https://formspree.io/f/xxxxx', { method: 'POST', body: new FormData(form) })).
+// Form richiesta demo, collegato a Formspree (https://formspree.io):
+// al submit i dati vengono inviati via POST come JSON e Formspree
+// li gira per email all'indirizzo configurato sul suo sito, senza
+// bisogno di un backend nostro. FORMSPREE_ENDPOINT va sostituito con
+// l'endpoint del form creato sull'account Formspree del ristorante
+// (Dashboard → New Form → copia l'URL "https://formspree.io/f/xxxxxxx").
 // ---------------------------------------------------------
+const FORMSPREE_ENDPOINT = '';
+
 function handleFormSubmit(form, feedbackEl, message) {
     const checkEl = feedbackEl.querySelector('.t-success-check');
     const textEl = feedbackEl.querySelector('#demoFeedbackText');
-    form.addEventListener('submit', (e) => {
+    const errorEl = document.getElementById('demoFormError');
+    const submitBtn = form.querySelector('button[type="submit"]');
+
+    form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        textEl.textContent = message;
-        feedbackEl.hidden = false;
-        if (checkEl) {
-            checkEl.setAttribute('data-state', 'out');
-            void checkEl.offsetWidth;
-            checkEl.setAttribute('data-state', 'in');
+        if (errorEl) errorEl.hidden = true;
+
+        if (!FORMSPREE_ENDPOINT) {
+            if (errorEl) {
+                errorEl.textContent = 'Modulo non ancora collegato: configura FORMSPREE_ENDPOINT in script.js.';
+                errorEl.hidden = false;
+            }
+            return;
         }
-        form.reset();
+
+        const originalLabel = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Invio...';
+
+        try {
+            const response = await fetch(FORMSPREE_ENDPOINT, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            });
+            if (!response.ok) throw new Error('Invio fallito');
+
+            textEl.textContent = message;
+            feedbackEl.hidden = false;
+            if (checkEl) {
+                checkEl.setAttribute('data-state', 'out');
+                void checkEl.offsetWidth;
+                checkEl.setAttribute('data-state', 'in');
+            }
+            form.reset();
+        } catch (err) {
+            if (errorEl) {
+                errorEl.textContent = 'Invio non riuscito. Riprova, oppure scrivici a info@salaflow.app.';
+                errorEl.hidden = false;
+            }
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalLabel;
+        }
     });
 }
 
