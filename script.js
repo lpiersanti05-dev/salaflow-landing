@@ -219,7 +219,7 @@ if (mockTables.length) {
 // l'endpoint del form creato sull'account Formspree del ristorante
 // (Dashboard → New Form → copia l'URL "https://formspree.io/f/xxxxxxx").
 // ---------------------------------------------------------
-const FORMSPREE_ENDPOINT = '';
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xvkoerqq';
 
 function handleFormSubmit(form, feedbackEl, message) {
     const checkEl = feedbackEl.querySelector('.t-success-check');
